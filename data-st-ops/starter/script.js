@@ -32,24 +32,38 @@ const restaurant = {
 const arr = [1, 3, 4];
 const a = arr[0];
 const b = arr[1];
-const c = arr[2];
+const c = arr[2]; //old way
 console.log(a, b, c);
 
-const [x, y, z] = arr;
+const [x, y, z] = arr; //new way
 console.log(x, y, z);
 
-//destructuring categories object from restaurant
+//destructuring objects
 const [main, , secondary] = restaurant.categories;
 console.log(main, secondary);
 
-//destructuring objects
+//switching variables
 const { name, openingHours, categories } = restaurant;
 console.log(name, openingHours, categories);
 
-//desstructuring objects with variables
+//destructuring objects with different names
 const {
   name: restaurantName,
   openingHours: hours,
   categories: tags,
 } = restaurant;
 console.log(restaurantName, hours, tags);
+
+//default values
+//if menu is not defined, it will be an empty array
+const { menu = [], starterMenu: starters = [] } = restaurant;
+console.log(menu, starters);
+
+//mutating variables
+let p = 111;
+let q = 999;
+const obj = { p: 23, q: 7, r: 14 }; //p and q are not the same as the variables above
+({ p, q } = obj); // using parenthesis to avoid syntax error
+console.log(p, q);
+
+//nested objects
