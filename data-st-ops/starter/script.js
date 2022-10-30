@@ -26,7 +26,22 @@ const restaurant = {
       close: 24,
     },
   },
+
+  order: function (starterIndex, mainIndex) {
+    return [this.starterMeun[starterIndex], this.mainMenu[mainIndex]];
+  },
+
+  orderDelivery: function (obj) {
+    console.log(obj);
+  },
 };
+
+restaurant.orderDelivery({
+  time: '22:30',
+  address: 'Via del Sole, 21',
+  mainIndex: 2,
+  starterIndex: 2,
+});
 
 //destructuring arrays
 const arr = [1, 3, 4];
@@ -67,3 +82,7 @@ const obj = { p: 23, q: 7, r: 14 }; //p and q are not the same as the variables 
 console.log(p, q);
 
 //nested objects
+const {
+  fri: { open: op, close: cl },
+} = openingHours;
+console.log(op, cl);
