@@ -31,8 +31,16 @@ const restaurant = {
     return [this.starterMeun[starterIndex], this.mainMenu[mainIndex]];
   },
 
-  orderDelivery: function (obj) {
-    console.log(obj);
+  orderDelivery: function ({
+    starterIndex = 1,
+    mainIndex = 0,
+    time = '20:00',
+    address,
+  }) {
+    // defining  default values for the parameters
+    console.log(
+      `Order received! ${this.starterMenu[starterIndex]} and ${this.mainMenu[mainIndex]} will be delivered to ${address} at ${time}`
+    );
   },
 };
 
@@ -41,7 +49,13 @@ restaurant.orderDelivery({
   address: 'Via del Sole, 21',
   mainIndex: 2,
   starterIndex: 2,
-});
+}); // Order received! Garlic Bread and Risotto will be delivered to Via del Sole, 21 at 22:30
+
+restaurant.orderDelivery({
+  address: 'Via del Sole, 21',
+  starterIndex: 1,
+}); // Order received! Bruschetta and Pizza will be delivered to Via del Sole, 21 at 20:00
+// uses default values for the parameters
 
 //destructuring arrays
 const arr = [1, 3, 4];
