@@ -42,6 +42,12 @@ const restaurant = {
       `Order received! ${this.starterMenu[starterIndex]} and ${this.mainMenu[mainIndex]} will be delivered to ${address} at ${time}`
     );
   },
+
+  orderPasta: function (ing1, ing2, ing3) {
+    console.log(
+      `Here is your delicious pasta with ${ing1}, ${ing2} and ${ing3}`
+    );
+  },
 };
 
 restaurant.orderDelivery({
@@ -56,16 +62,6 @@ restaurant.orderDelivery({
   starterIndex: 1,
 }); // Order received! Bruschetta and Pizza will be delivered to Via del Sole, 21 at 20:00
 // uses default values for the parameters
-
-//destructuring arrays
-const arr = [1, 3, 4];
-const a = arr[0];
-const b = arr[1];
-const c = arr[2]; //old way
-console.log(a, b, c);
-
-const [x, y, z] = arr; //new way
-console.log(x, y, z);
 
 //destructuring objects
 const [main, , secondary] = restaurant.categories;
@@ -100,3 +96,67 @@ const {
   fri: { open: op, close: cl },
 } = openingHours;
 console.log(op, cl);
+
+//-------------------------------------------------------------------------------------
+
+//destructuring arrays
+const arr = [1, 3, 4];
+const a = arr[0];
+const b = arr[1];
+const c = arr[2]; //old way
+console.log(a, b, c);
+
+const [x, y, z] = arr; //new way
+console.log(x, y, z);
+
+//-------------------------------------------------------------------------------------
+
+// spread operator
+
+const arrr = [7, 8, 9];
+const badNewArr = [1, 2, arrr[0], arrr[1], arrr[2]]; //old way
+console.log(badNewArr); // [1, 2, 7, 8, 9]
+
+const newArr = [1, 2, ...arrr]; //new way - using spread operator
+console.log(newArr); // [1, 2, 7, 8, 9]
+
+//adding elements to an array -mainMenu using spread operator
+const newMenu = [...restaurant.mainMenu, 'Gnocci'];
+
+//copying arrays - using spread operator
+const mainMenuCopy = [...restaurant.mainMenu];
+
+//joining arrays from restaurant object - starterMenu and mainMenu
+const menuAll = [...restaurant.starterMenu, ...restaurant.mainMenu];
+
+//iterables: arrays, strings, maps, sets. NOT objects
+const str = 'Jonas';
+const letters = [...str, ' ', 'S.'];
+console.log(letters); // [ 'J', 'o', 'n', 'a', 's', ' ', 'S.' ]
+console.log(...str); // J o n a s
+//console.log(`${...str} Schmedtmann`); - SyntaxError: Unexpected token '...'
+
+//real world example
+const ingredients = [
+  //prompt user to enter ingredients
+  prompt("Let's make pasta! Ingredient 1?"),
+  prompt('Ingredient 2?'),
+  prompt('Ingredient 3?'),
+];
+console.log(ingredients); //
+
+restaurant.orderPasta(ingredients[0], ingredients[1], ingredients[2]); //old way
+
+// Here is your delicious pasta with 1, 2 and 3 as entered in the prompt
+restaurant.orderPasta(...ingredients); //new way - using spread operator
+
+//objects
+//new object with properties from restaurant object
+const newRestaurant = { foundedIn: 1998, ...restaurant, founder: 'Guiseppe' };
+console.log(newRestaurant);
+
+//copying objects
+const restaurantCopy = { ...restaurant }; //copying restaurant object
+restaurantCopy.name = 'Ristorante Roma'; //changing name of the restaurant
+
+//-------------------------------------------------------------------------------------
