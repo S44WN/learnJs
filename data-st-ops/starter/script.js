@@ -160,3 +160,19 @@ const restaurantCopy = { ...restaurant }; //copying restaurant object
 restaurantCopy.name = 'Ristorante Roma'; //changing name of the restaurant
 
 //-------------------------------------------------------------------------------------
+
+//rest pattern and parameters
+// SPREAD because on the RIGHT side of =
+const arr3 = [1, 2, ...[3, 4]];
+
+// REST because on the LEFT side of =
+const [r, s, ...others] = [1, 2, 3, 4, 5]; //rest pattern - collects all the remaining elements into an array
+console.log(r, s, others); // 1 2 [ 3, 4, 5 ]
+
+const [pizza, , risotto, ...otherFood] = [
+  ...restaurant.mainMenu,
+  ...restaurant.starterMenu,
+];
+console.log(pizza, risotto, otherFood); // Pizza Risotto [ 'Focaccia', 'Bruschetta', 'Garlic Bread', 'Caprese Salad' ]
+
+//
