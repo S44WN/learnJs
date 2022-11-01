@@ -204,3 +204,34 @@ add(...val); //spread operator - used to expand an array into its elements
 // mushrooms is not an array, it is a single value
 // onion, olives, spinach - rest pattern
 restaurant.orderPizza('mushrooms', 'onion', 'olives', 'spinach');
+
+//-------------------------------------------------------------------------------------
+
+//short circuiting (&& and ||)
+
+//use ANY data type, return ANY data type, short-circuiting
+console.log(3 || 'Jonas'); // 3
+console.log('' || 'Jonas'); // Jonas
+console.log(true || 0); // true
+console.log(undefined || null); // null
+
+//if the first value is a truthy value, it will be returned
+//if the first value is a falsy value, it will return the second value
+console.log(undefined || 0 || '' || 'Hello' || 23 || null); // Hello
+
+//restaurant.numGuests = 0;
+const guests1 = restaurant.numGuests ? restaurant.numGuests : 10;
+console.log(guests1); // 10
+
+const guests2 = restaurant.numGuests || 10;
+console.log(guests2); // 10
+
+//nullish coalescing operator (??)
+
+//nullish values: null and undefined (NOT 0 or '')
+restaurant.numGuests = 0;
+// if restaurant.numGuests is null or undefined, it will return 10
+const guests = restaurant.numGuests ?? 10;
+console.log(guests); // 0
+
+//-------------------------------------------------------------------------------------
