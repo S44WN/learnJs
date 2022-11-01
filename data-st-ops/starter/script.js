@@ -48,6 +48,12 @@ const restaurant = {
       `Here is your delicious pasta with ${ing1}, ${ing2} and ${ing3}`
     );
   },
+
+  orderPizza: function (mainIngredient, ...otherIngredients) {
+    //rest pattern - collects all the remaining elements into an array like otherIngredients will be an array
+    console.log(mainIngredient);
+    console.log(otherIngredients);
+  },
 };
 
 restaurant.orderDelivery({
@@ -175,4 +181,26 @@ const [pizza, , risotto, ...otherFood] = [
 ];
 console.log(pizza, risotto, otherFood); // Pizza Risotto [ 'Focaccia', 'Bruschetta', 'Garlic Bread', 'Caprese Salad' ]
 
-//
+//object
+const { sat, ...weekDays } = restaurant.openingHours;
+console.log(sat, weekDays);
+
+// functions
+const add = function (...numbers) {
+  //rest pattern - collects all the remaining elements into an array
+  let sum = 0;
+  for (let i = 0; i < numbers.length; i++) sum += numbers[i];
+  console.log(sum);
+};
+
+//rest parameter - collects all the remaining elements into an array
+add(8, 2, 5, 3, 2, 1, 4);
+add(2, 3); // 5
+add(5, 3, 7, 2); // 17
+
+const val = [23, 5, 7];
+add(...val); //spread operator - used to expand an array into its elements
+
+// mushrooms is not an array, it is a single value
+// onion, olives, spinach - rest pattern
+restaurant.orderPizza('mushrooms', 'onion', 'olives', 'spinach');
