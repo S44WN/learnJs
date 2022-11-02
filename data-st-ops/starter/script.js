@@ -149,7 +149,7 @@ const ingredients = [
   prompt('Ingredient 2?'),
   prompt('Ingredient 3?'),
 ];
-console.log(ingredients); //
+console.log(ingredients);
 
 restaurant.orderPasta(ingredients[0], ingredients[1], ingredients[2]); //old way
 
