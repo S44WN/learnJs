@@ -209,25 +209,48 @@ restaurant.orderPizza('mushrooms', 'onion', 'olives', 'spinach');
 
 //short circuiting (&& and ||)
 
+console.log('----- OR -----');
+
 //use ANY data type, return ANY data type, short-circuiting
 console.log(3 || 'Jonas'); // 3
 console.log('' || 'Jonas'); // Jonas
 console.log(true || 0); // true
-console.log(undefined || null); // null
+console.log(undefined || null);
+// null - because null is falsy value and undefined is a falsy value as well and null is the last falsy value
 
 //if the first value is a truthy value, it will be returned
 //if the first value is a falsy value, it will return the second value
 console.log(undefined || 0 || '' || 'Hello' || 23 || null); // Hello
 
-//restaurant.numGuests = 0;
+//restaurant.numGuests = 0; // 0 is a falsy value so it will return the second value - MAJOR BUG
+// ternary operator - if restaurant.numGuests is truthy, it will be returned, otherwise 10 will be returned
 const guests1 = restaurant.numGuests ? restaurant.numGuests : 10;
 console.log(guests1); // 10
 
-const guests2 = restaurant.numGuests || 10;
+const guests2 = restaurant.numGuests || 10; //short circuiting same thing as above
 console.log(guests2); // 10
 
-//nullish coalescing operator (??)
+console.log('----- AND -----');
+console.log(0 && 'Jonas'); // 0 - falsy value Short-circuis and returns the first falsy value
+console.log(7 && 'Jonas'); // Jonas
 
+console.log('Hello' && 23 && null && 'jonas'); // null - short-circuits and returns the first falsy value
+
+//practical example
+if (restaurant.orderPizza) {
+  restaurant.orderPizza('mushrooms', 'spinach');
+}
+
+//restaurant.orderBurger // undefined - because orderBurger method does not exist in the restaurant object
+restaurant.orderBurger && restaurant.orderBurger('cheese', 'tomato'); // undefined
+
+// restaurant.orderPizza is a truthy value, so it will move to the next expression i.e restaurant.orderPizza('mushrooms', 'spinach')
+// if restaurant.orderPizza is truthy, second part will be executed
+restaurant.orderPizza && restaurant.orderPizza('mushrooms', 'spinach');
+
+// FIXES THE BUG ABOVE - when restaurant.numGuests is 0
+
+//nullish coalescing operator (??)
 //nullish values: null and undefined (NOT 0 or '')
 restaurant.numGuests = 0;
 // if restaurant.numGuests is null or undefined, it will return 10
